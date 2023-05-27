@@ -1,0 +1,17 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@color/white" />
+            <stroke android:width="5dp" android:color="@color/gray" />
+            <padding
+                android:left="10dp"
+                android:top="10dp"
+                android:right="10dp"
+                android:bottom="10dp" />
+
+            <item android:gravity="center">
+                <font android:fontFamily="sans-serif" android:text="" android:textSize="30sp" android:textColor="@color/black" />
+            </item>
+        </shape>
+    </item>
+</selector>

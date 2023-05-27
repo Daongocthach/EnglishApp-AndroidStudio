@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+
+    <application
+        android:usesCleartextTraffic="true"
+        android:name="com.group15.finalprojectenglishapp.notify.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
+        <activity android:name="com.group15.finalprojectenglishapp.taikhoan.RankingActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.dienkhuyet.FinishDKActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.dienkhuyet.FillBlanksActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.dienkhuyet.DienKhuyetActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.taikhoan.ForgotPasswordActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.sapxepcau.FinishSXCActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.tracnghiem.FinishQuizActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.tracnghiem.QuizActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.tracnghiem.TracNghiemActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.luyennghetoeic.FinishQuizLSActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.luyennghetoeic.LuyenNgheActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.taikhoan.ThongTinTaikhoanActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.sapxepcau.ArrangeSentencesActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.sapxepcau.SapXepCauActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.hoctuvung.FinishHTVActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.hoctuvung.WordMattersActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.hoctuvung.DSTuVungActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.hoctuvung.HocTuVungActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.luyennghetoeic.ListeningActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.admin.AdminActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.bohoctap.AdminBoHocTapActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.bohoctap.EditBoHocTapActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.bohoctap.AddBoHocTapActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.tuvung.AdminBoTuVungActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.tuvung.AdminTuVungActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.tuvung.EditTuVungActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.tuvung.AddTuVungActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.tracnghiem.AdminBoTracNghiemActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.tracnghiem.AdminTracNghiemActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.tracnghiem.AddTracNghiemActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.tracnghiem.EditTracNghiemActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.sapxepcau.AdminBoSapXepCauActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.sapxepcau.AdminSapXepCauActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.sapxepcau.EditSapXepCauActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.sapxepcau.AddSapXepCauActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.luyennghe.AdminBoLuyenNgheActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.luyennghe.AdminLuyenNgheActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.luyennghe.EditLuyenNgheActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.luyennghe.AddLuyenNgheActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.dienkhuyet.AdminBoDienKhuyetActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.dienkhuyet.AdminDienKhuyetActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.dienkhuyet.AddDienKhuyetActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.dienkhuyet.EditDienKhuyetActivity"/>
+        <activity
+            android:name="com.group15.finalprojectenglishapp.MainActivity"
+            android:exported="false"
+            android:label="@string/title_activity_main"
+            android:theme="@style/Theme.FirebaseProjectStudyEnglish.NoActionBar" />
+        <activity android:name="com.group15.finalprojectenglishapp.taikhoan.SignupActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.taikhoan.LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name="com.group15.finalprojectenglishapp.notify.MyService"/>
+        <receiver android:name="com.group15.finalprojectenglishapp.notify.MyReceiver"/>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>

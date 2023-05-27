@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Speaking"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:textStyle="bold"/>
+        <ImageView
+            android:id="@+id/toolbar_setting"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/settings" />
+
+        <ImageView
+            android:id="@+id/toolbar_heart"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="10dp"
+            android:src="@drawable/heart" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/toolbar"
+        android:background="@color/dark_gray" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/view1"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp">
+
+        <RelativeLayout
+            android:id="@+id/relate1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_topic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="serif"
+                android:text="Topic"
+                android:textColor="@color/black"
+                android:textSize="24dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_below="@id/tv_topic"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/topic_recycleview"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="vertical"
+                    app:layoutManager="LinearLayoutManager">
+                </androidx.recyclerview.widget.RecyclerView>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Inflationary Discourse Scrutinized"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:visibility="gone"/>
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@+id/title"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:scaleType="center"
+                android:src="@drawable/picture"
+                android:visibility="gone"/>
+
+
+            <TextView
+                android:id="@+id/tv_paragraph"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image"
+                android:padding="10dp"
+                android:text="The crisis of inflation, reasons behind its emergence and solutions to control it are being talked about publicly in media outlets. The fact is that Iranians have been dealing with “inflationary shocks” for more than 50 years. Besides its economic consequences, inflation has had negative political, social and cultural ramifications."
+                android:textColor="@color/black"
+                android:textSize="19dp"
+                android:visibility="gone"/>
+
+            <LinearLayout
+                android:id="@+id/linear2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_paragraph"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/image_micro"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:src="@drawable/micro" />
+
+                <ImageView
+                    android:id="@+id/image_listen"
+                    android:layout_width="25dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:src="@drawable/volume" />
+
+                <TextView
+                    android:id="@+id/tv_continue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="30dp"
+                    android:fontFamily="sans-serif"
+                    android:text="Continue"
+                    android:background="@color/higlight_gray"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>
