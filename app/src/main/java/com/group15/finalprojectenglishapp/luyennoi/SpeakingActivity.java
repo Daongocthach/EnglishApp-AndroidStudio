@@ -14,9 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.group15.finalprojectenglishapp.Adapter.TopicSpeakingAdapter;
-import com.group15.finalprojectenglishapp.Interface.IClickItemSpeaking;
-import com.group15.finalprojectenglishapp.Model.Speaking;
+
 import com.group15.finalprojectenglishapp.R;
 import java.util.ArrayList;
 import java.util.Locale;

@@ -55,7 +55,7 @@ public class LuyenNgheActivity extends AppCompatActivity {
                     idbocauhoi=idbo;
                     break;
                 }
-                Intent quiz= new Intent(LuyenNgheActivity.this, ListeningActivity.class);
+                Intent quiz= new Intent(LuyenNgheActivity.this, ListeningToeicActivity.class);
                 quiz.putExtra("Bo",idbocauhoi);
                 startActivity(quiz);
             }

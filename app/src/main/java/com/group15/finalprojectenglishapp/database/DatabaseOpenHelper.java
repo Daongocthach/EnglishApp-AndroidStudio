@@ -2,7 +2,6 @@ package com.group15.finalprojectenglishapp.database;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-
 import androidx.annotation.Nullable;
 import com.readystatesoftware.sqliteasset.SQLiteAssetHelper;
 
@@ -15,7 +14,6 @@ public class DatabaseOpenHelper extends SQLiteAssetHelper {
     }
 
     @Override
-
     public void onUpgrade(SQLiteDatabase MyDB, int oldVersion, int newVersion) {
         MyDB.execSQL("drop table if exists User ");
     }

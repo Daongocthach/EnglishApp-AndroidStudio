@@ -38,7 +38,7 @@
         <activity android:name="com.group15.finalprojectenglishapp.hoctuvung.WordMattersActivity" />
         <activity android:name="com.group15.finalprojectenglishapp.hoctuvung.DSTuVungActivity" />
         <activity android:name="com.group15.finalprojectenglishapp.hoctuvung.HocTuVungActivity" />
-        <activity android:name="com.group15.finalprojectenglishapp.luyennghetoeic.ListeningActivity" />
+        <activity android:name="com.group15.finalprojectenglishapp.luyennghetoeic.ListeningToeicActivity" />
         <activity android:name="com.group15.finalprojectenglishapp.admin.AdminActivity"/>
         <activity android:name="com.group15.finalprojectenglishapp.admin.bohoctap.AdminBoHocTapActivity"/>
         <activity android:name="com.group15.finalprojectenglishapp.admin.bohoctap.EditBoHocTapActivity"/>
@@ -63,6 +63,8 @@
         <activity android:name="com.group15.finalprojectenglishapp.admin.dienkhuyet.AdminDienKhuyetActivity"/>
         <activity android:name="com.group15.finalprojectenglishapp.admin.dienkhuyet.AddDienKhuyetActivity"/>
         <activity android:name="com.group15.finalprojectenglishapp.admin.dienkhuyet.EditDienKhuyetActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.luyennoi.SpeakingActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.luyennghe.ListeningActivity"/>
         <activity
             android:name="com.group15.finalprojectenglishapp.MainActivity"
             android:exported="false"

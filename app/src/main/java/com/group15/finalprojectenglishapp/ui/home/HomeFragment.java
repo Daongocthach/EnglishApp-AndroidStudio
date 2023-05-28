@@ -1,8 +1,6 @@
 package com.group15.finalprojectenglishapp.ui.home;
 
 import android.app.Dialog;
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
@@ -24,13 +22,10 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.group15.finalprojectenglishapp.Adapter.WordAdapter;
-import com.group15.finalprojectenglishapp.Interface.IClickItemWord;
-import com.group15.finalprojectenglishapp.Model.Word;
 import com.group15.finalprojectenglishapp.R;
 import com.group15.finalprojectenglishapp.dienkhuyet.DienKhuyetActivity;
 import com.group15.finalprojectenglishapp.hoctuvung.HocTuVungActivity;
-import com.group15.finalprojectenglishapp.luyennghetoeic.ListeningActivity;
+import com.group15.finalprojectenglishapp.luyennghetoeic.ListeningToeicActivity;
 import com.group15.finalprojectenglishapp.luyennghetoeic.LuyenNgheActivity;
 import com.group15.finalprojectenglishapp.luyennoi.SpeakingActivity;
 import com.group15.finalprojectenglishapp.sapxepcau.SapXepCauActivity;
@@ -130,7 +125,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(getActivity(), ListeningActivity.class);
+                Intent intent=new Intent(getActivity(), ListeningToeicActivity.class);
                 startActivity(intent);
             }
         });
