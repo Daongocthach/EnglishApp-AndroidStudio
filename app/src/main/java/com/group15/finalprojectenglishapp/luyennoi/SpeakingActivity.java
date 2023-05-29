@@ -48,7 +48,7 @@ public class SpeakingActivity extends AppCompatActivity {
         TextView topic = findViewById(R.id.tv_topic);
         LinearLayout linearLayout = findViewById(R.id.linear2);
         RecyclerView recyclerViewTopic = findViewById(R.id.topic_recycleview);
-        AddArrayTV();
+        AddArraySpeaking();
         TopicSpeakingAdapter topicSpeakingAdapter = new TopicSpeakingAdapter(speakingList, new IClickItemSpeaking() {
             @Override
             public void onClickItemTopicSpeaking(Speaking speaking) {
@@ -216,7 +216,7 @@ public class SpeakingActivity extends AppCompatActivity {
         }
     }
 
-    private void AddArrayTV(){
+    private void AddArraySpeaking(){
         database = Database.initDatabase(SpeakingActivity.this, DATABASE_NAME);
         Cursor cursor = database.rawQuery("SELECT * FROM LuyenNoi",null);
         speakingList.clear();

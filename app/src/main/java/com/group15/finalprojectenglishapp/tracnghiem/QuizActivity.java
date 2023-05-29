@@ -37,7 +37,6 @@ public class QuizActivity extends AppCompatActivity {
     int answer=0;
     int score=0;
     int idbo;
-
     User user;
 
     @Override

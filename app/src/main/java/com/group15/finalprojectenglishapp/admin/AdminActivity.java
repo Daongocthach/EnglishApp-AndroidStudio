@@ -71,8 +71,8 @@ public class AdminActivity extends AppCompatActivity {
                     startActivity(new Intent(AdminActivity.this, ThongTinTaikhoanActivity.class));
                 }
                 else if (position == 1) {
-                    Intent intent = new Intent(AdminActivity.this, MainActivity.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(AdminActivity.this, MainActivity.class);
+//                    startActivity(intent);
                 }
                 else if (position == 2) {
                     startActivity(new Intent(AdminActivity.this, AdminBoHocTapActivity.class));

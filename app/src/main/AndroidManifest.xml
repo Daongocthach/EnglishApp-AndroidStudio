@@ -59,6 +59,8 @@
         <activity android:name="com.group15.finalprojectenglishapp.admin.luyennghe.AdminLuyenNgheActivity"/>
         <activity android:name="com.group15.finalprojectenglishapp.admin.luyennghe.EditLuyenNgheActivity"/>
         <activity android:name="com.group15.finalprojectenglishapp.admin.luyennghe.AddLuyenNgheActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.luyennoi.EditLuyenNoiActivity"/>
+        <activity android:name="com.group15.finalprojectenglishapp.admin.luyennoi.AddLuyenNoiActivity"/>
         <activity android:name="com.group15.finalprojectenglishapp.admin.dienkhuyet.AdminBoDienKhuyetActivity"/>
         <activity android:name="com.group15.finalprojectenglishapp.admin.dienkhuyet.AdminDienKhuyetActivity"/>
         <activity android:name="com.group15.finalprojectenglishapp.admin.dienkhuyet.AddDienKhuyetActivity"/>

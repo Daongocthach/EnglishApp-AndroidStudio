@@ -48,7 +48,7 @@ public class ListeningActivity extends AppCompatActivity {
         recyclerViewTopic = findViewById(R.id.topic_recycleview);
         recyclerViewListening = findViewById (R.id.listen_recycleview);
 
-        AddArrayTV();
+        AddArrayListening();
         TopicListeningAdapter topicListeningAdapter = new TopicListeningAdapter(listeningList, new IClickItemListening() {
             @Override
             public void onClickItemTopicListening(Listening listening) {
@@ -158,7 +158,7 @@ public class ListeningActivity extends AppCompatActivity {
             tts.shutdown();
         }
     }
-    private void AddArrayTV(){
+    private void AddArrayListening(){
         database = Database.initDatabase(ListeningActivity.this, DATABASE_NAME);
         Cursor cursor = database.rawQuery("SELECT * FROM LuyenNoi",null);
         listeningList.clear();
