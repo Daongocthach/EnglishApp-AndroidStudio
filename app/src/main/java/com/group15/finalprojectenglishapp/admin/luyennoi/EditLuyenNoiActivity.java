@@ -79,9 +79,9 @@ public class EditLuyenNoiActivity extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(EditLuyenNoiActivity.this, AdminLuyenNgheActivity.class);
-                intent.putExtra("idBoLuyenNghe", luyenNghe.getIdbo());
-                startActivity(intent);
+//                Intent intent = new Intent(EditLuyenNoiActivity.this, AdminLuyenNgheActivity.class);
+//                intent.putExtra("idBoLuyenNghe", luyenNghe.getIdbo());
+//                startActivity(intent);
             }
         });
         imgEdit.setOnClickListener(new View.OnClickListener() {
@@ -111,10 +111,10 @@ public class EditLuyenNoiActivity extends AppCompatActivity {
                     }
                     Boolean result = updateLuyenNghe(luyenNghe.getIdbai(), luyenNghe.getIdbo(), "A", "B", "C", "D", dapanTrue, hinhAnh, audio);
                     if (result == true) {
-                        Toast.makeText(EditLuyenNoiActivity.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(EditLuyenNoiActivity.this, AdminLuyenNgheActivity.class);
-                        intent.putExtra("idBoLuyenNghe", luyenNghe.getIdbo());
-                        startActivity(intent);
+//                        Toast.makeText(EditLuyenNoiActivity.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
+//                        Intent intent = new Intent(EditLuyenNoiActivity.this, AdminLuyenNgheActivity.class);
+//                        intent.putExtra("idBoLuyenNghe", luyenNghe.getIdbo());
+//                        startActivity(intent);
                     }
                     else {
                         Toast.makeText(EditLuyenNoiActivity.this, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();

@@ -64,9 +64,9 @@ public class AddLuyenNoiActivity extends AppCompatActivity {
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AddLuyenNoiActivity.this, AdminLuyenNgheActivity.class);
-                intent.putExtra("idBoLuyenNghe", idBLN);
-                startActivity(intent);
+//                Intent intent = new Intent(AddLuyenNoiActivity.this, AdminLuyenNgheActivity.class);
+//                intent.putExtra("idBoLuyenNghe", idBLN);
+//                startActivity(intent);
             }
         });
         imgAdd.setOnClickListener(new View.OnClickListener() {
@@ -98,9 +98,9 @@ public class AddLuyenNoiActivity extends AppCompatActivity {
                     Boolean result = addLuyenNghe(idBLN, "A", "B", "C", "D", dapanTrue, hinhAnh, audio);
                     if (result == true) {
                         Toast.makeText(AddLuyenNoiActivity.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(AddLuyenNoiActivity.this, AdminLuyenNgheActivity.class);
-                        intent.putExtra("idBoLuyenNghe", idBLN);
-                        startActivity(intent);
+//                        Intent intent = new Intent(AddLuyenNoiActivity.this, AdminLuyenNgheActivity.class);
+//                        intent.putExtra("idBoLuyenNghe", idBLN);
+//                        startActivity(intent);
                     }
                     else {
                         Toast.makeText(AddLuyenNoiActivity.this, "Thêm thất bại", Toast.LENGTH_SHORT).show();
