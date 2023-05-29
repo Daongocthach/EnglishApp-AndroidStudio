@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Mọi thắc mắc, hỗ trợ xin vui lòng gửi mail về (huynhminhduc@gmail.com)", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Liên hệ mail admin@gmail.com để biết thêm thông tin", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
