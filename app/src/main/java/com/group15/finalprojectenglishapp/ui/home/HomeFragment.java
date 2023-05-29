@@ -2,6 +2,7 @@ package com.group15.finalprojectenglishapp.ui.home;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -23,9 +24,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.group15.finalprojectenglishapp.R;
+import com.group15.finalprojectenglishapp.database.Database;
 import com.group15.finalprojectenglishapp.dienkhuyet.DienKhuyetActivity;
 import com.group15.finalprojectenglishapp.hoctuvung.HocTuVungActivity;
-import com.group15.finalprojectenglishapp.luyennghetoeic.ListeningToeicActivity;
+import com.group15.finalprojectenglishapp.hoctuvung.TuVung;
+import com.group15.finalprojectenglishapp.luyennghe.ListeningActivity;
 import com.group15.finalprojectenglishapp.luyennghetoeic.LuyenNgheActivity;
 import com.group15.finalprojectenglishapp.luyennoi.SpeakingActivity;
 import com.group15.finalprojectenglishapp.sapxepcau.SapXepCauActivity;
@@ -40,8 +43,9 @@ public class HomeFragment extends Fragment {
     CardView cardViewHocTuVung, cardViewTracNghiem, cardViewSapXepCau, cardViewLuyenNghe,cardViewDienKhuyet,cardViewXepHang, cardViewLuyenNoi, cardViewListening ;
     final  String DATABASE_NAME = "HocNgonNgu.db";
     SQLiteDatabase database;
-    private ArrayList<Word> listWord;
-    WordAdapter wordAdapter;
+//    private ArrayList<TuVung> listTuVung;
+    ArrayList<TuVung> DStuvung;
+    SearchTuVungAdapter searchTuVungAdapter;
     RecyclerView recyclerView;
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -58,13 +62,14 @@ public class HomeFragment extends Fragment {
         cardViewListening = root.findViewById(R.id.cardViewListening);
         recyclerView = root.findViewById(R.id.recycleView_word);
         SearchView searchView = root.findViewById(R.id.search_bar);
-        listWord = new ArrayList<>();
-        listWord = getWordList();
+        DStuvung = new ArrayList<>();
+        AddArrayTV();
+        
         setUpRecyclerView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                wordAdapter.getFilter().filter(query);
+                searchTuVungAdapter.getFilter().filter(query);
                 return false;
             }
             @Override
@@ -74,7 +79,7 @@ public class HomeFragment extends Fragment {
                     return false;
                 }
                 recyclerView.setVisibility(View.VISIBLE);
-                wordAdapter.getFilter().filter(newText);
+                searchTuVungAdapter.getFilter().filter(newText);
                 return false;
             }
         });
@@ -125,7 +130,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Intent intent=new Intent(getActivity(), ListeningToeicActivity.class);
+                Intent intent=new Intent(getActivity(), ListeningActivity.class);
                 startActivity(intent);
             }
         });
@@ -139,7 +144,7 @@ public class HomeFragment extends Fragment {
         });
         return root;
     }
-    private void openDialog(Word word) {
+    private void openDialog(TuVung TuVung) {
         final Dialog dialog = new Dialog(getActivity());
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.search_dialog);
@@ -153,36 +158,47 @@ public class HomeFragment extends Fragment {
         windowAttribute.gravity = Gravity.BOTTOM;
         window.setAttributes(windowAttribute);
         dialog.setCancelable(true);
-        TextView wordName = dialog.findViewById(R.id.word_name);
-        TextView wordMeaning = dialog.findViewById(R.id.word_meaning);
-        TextView wordType = dialog.findViewById(R.id.word_type);
+        TextView TuVungName = dialog.findViewById(R.id.word_name);
+        TextView TuVungMeaning = dialog.findViewById(R.id.word_meaning);
+        TextView TuVungType = dialog.findViewById(R.id.word_type);
 
-        if (word != null) {
-            wordName.setText(word.getWord());
-            wordType.setText("(" + word.getType() + ")" + ":");
-            wordMeaning.setText(word.getMeaning());
+        if (TuVung != null) {
+            TuVungName.setText(TuVung.getDapan());
+            TuVungType.setText("(" + TuVung.getLoaitu() + ")" + ":");
+            TuVungMeaning.setText(TuVung.getDichnghia());
         } else return;
         dialog.show();
     }
-
-    public ArrayList<Word> getWordList() {
-        listWord.add(new Word("apple", "noun", "Quả táo"));
-        listWord.add(new Word("application", "noun", "Ứng dụng"));
-        listWord.add(new Word("blue", "noun", "Màu xanh biển"));
-        listWord.add(new Word("bad", "adjective", "Tệ, xấu"));
-        return listWord;
-    }
+    
 
     private void setUpRecyclerView() {
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        wordAdapter = new WordAdapter(listWord, getActivity(), new IClickItemWord() {
+        searchTuVungAdapter = new SearchTuVungAdapter(DStuvung, getActivity(), new IClickItemTuVung() {
             @Override
-            public void onClickItemWord(Word word) {
-                openDialog(word);
+            public void onClickItemTuVung(TuVung TuVung) {
+                openDialog(TuVung);
             }
         });
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(wordAdapter);
+        recyclerView.setAdapter(searchTuVungAdapter);
+    }
+    private void AddArrayTV(){
+        database = Database.initDatabase(getActivity(), DATABASE_NAME);
+        Cursor cursor = database.rawQuery("SELECT * FROM TuVung",null);
+        DStuvung.clear();
+
+        for (int i = 0; i < cursor.getCount(); i++){
+            cursor.moveToPosition(i);
+            int idtu = cursor.getInt(0);
+            int idbo = cursor.getInt(1);
+            String dapan = cursor.getString(2);
+            String dichnghia = cursor.getString(3);
+            String loaitu = cursor.getString(4);
+            String audio = cursor.getString(5);
+            byte[] anh = cursor.getBlob(6);
+
+            DStuvung.add(new TuVung(idtu,idbo,dapan,dichnghia,loaitu,audio,anh));
+        }
     }
 }

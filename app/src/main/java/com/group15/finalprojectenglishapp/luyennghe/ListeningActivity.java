@@ -1,5 +1,7 @@
 package com.group15.finalprojectenglishapp.luyennghe;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -7,14 +9,22 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.group15.finalprojectenglishapp.R;
+import com.group15.finalprojectenglishapp.database.Database;
+import com.group15.finalprojectenglishapp.luyennoi.Speaking;
+import com.group15.finalprojectenglishapp.luyennoi.SpeakingActivity;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.Locale;
 
 public class ListeningActivity extends AppCompatActivity {
+    final  String DATABASE_NAME = "HocNgonNgu.db";
+    SQLiteDatabase database;
     private String string;
     private ListeningAdapter listeningAdapter;
     private RecyclerView recyclerViewListening;
@@ -33,9 +43,12 @@ public class ListeningActivity extends AppCompatActivity {
         ImageView imageRepeate = findViewById(R.id.image_repeate);
         TextView title = findViewById(R.id.title);
         TextView topic = findViewById(R.id.tv_topic);
+        View viewSpace = findViewById(R.id.viewSpace);
+        CoordinatorLayout  coordinatorLayout = findViewById(R.id.coordinator);
         recyclerViewTopic = findViewById(R.id.topic_recycleview);
         recyclerViewListening = findViewById (R.id.listen_recycleview);
-        listeningList = getTopicList();
+
+        AddArrayTV();
         TopicListeningAdapter topicListeningAdapter = new TopicListeningAdapter(listeningList, new IClickItemListening() {
             @Override
             public void onClickItemTopicListening(Listening listening) {
@@ -44,7 +57,14 @@ public class ListeningActivity extends AppCompatActivity {
                 recyclerViewListening.setVisibility(View.VISIBLE);
                 title.setVisibility(View.VISIBLE);
                 imageView.setVisibility(View.VISIBLE);
-                imageView.setImageResource(listening.getImage());
+                viewSpace.setVisibility(View.VISIBLE);
+                coordinatorLayout.setVisibility(View.VISIBLE);
+                Picasso.get()
+                        .load(listening.getImage())
+                        .placeholder(R.mipmap.ic_launcher)
+                        .fit()
+                        .centerCrop()
+                        .into(imageView);
                 title.setText(listening.getTopic());
                 string = listening.getSentence();
                 ArrayList<String> arrayList = splitIntoParagraphs(string, 30);
@@ -138,24 +158,21 @@ public class ListeningActivity extends AppCompatActivity {
             tts.shutdown();
         }
     }
+    private void AddArrayTV(){
+        database = Database.initDatabase(ListeningActivity.this, DATABASE_NAME);
+        Cursor cursor = database.rawQuery("SELECT * FROM LuyenNoi",null);
+        listeningList.clear();
 
-    public ArrayList<Listening> getTopicList() {
-        listeningList.add(new Listening("Inflationary", R.drawable.lamphat, "The demand-pull and cost-push inflation will put pressure on the country's efforts to control inflation amid surging demand and strengthening of the US dollar which yields increased import prices.\n" +
-                "It will not be easy to keep inflation at 4.5% this year as targeted, economic expert Nguyen Bich Lam, former General Director of the General Statistics Office (GSO), has said.\n" +
-                "\n" +
-                "Inflationary pressure for Vietnam's economy in 2023 is \"huge\" and comes from many factors, he said in an interview with the Vietnam News Agency (VNA).\n" +
-                "\n" +
-                "The demand-pull and cost-push inflation will put pressure on the country's efforts to control inflation amid surging demand and strengthening of the US dollar which yields increased import prices.\n" +
-                "\n" +
-                "Demand for petrol and electricity – the two important commodities for production and consumption – will increase in 2023. The domestic electricity price has been kept unchanged for the past few years, while the price of coal and gas used in the production of electricity has increased, he said, noting that thermal and gas power account for a large proportion of the total generated electricity. Therefore, it is forecasted that the Government may raise the price of electricity this year"));
-        listeningList.add(new Listening("War", R.drawable.chientranh, "US President Joe Biden will meet his Ukrainian counterpart at the G7 summit in Japan, a top advisor said Saturday. President Volodymyr Zelensky will join the global leaders after taking part in the Arab League summit in Saudi Arabia."));
-        listeningList.add(new Listening("Food", R.drawable.luongthuc, "Canning your own tomatoes at home will bring garden-fresh flavor to all kinds of dishes year-round. Learn how to safely preserve them with our simple guide."));
-        listeningList.add(new Listening("Weather", R.drawable.khihau, "According to the National Centre for Hydro- Metreologogical Forecasting (NCHMF), hot weather is set to scorch northern and northern-central localities on May 18, with the highest temperature ranging from 37 to 40 degrees Celsius."));
-        listeningList.add(new Listening("Technology", R.drawable.congnghe, "According to the National Centre for Hydro- Metreologogical Forecasting (NCHMF), hot weather is set to scorch northern and northern-central localities on May 18, with the highest temperature ranging from 37 to 40 degrees Celsius."));
-        listeningList.add(new Listening("Security", R.drawable.anninh, "According to the National Centre for Hydro- Metreologogical Forecasting (NCHMF), hot weather is set to scorch northern and northern-central localities on May 18, with the highest temperature ranging from 37 to 40 degrees Celsius."));
-        listeningList.add(new Listening("Economy", R.drawable.kinhte, "According to the National Centre for Hydro- Metreologogical Forecasting (NCHMF), hot weather is set to scorch northern and northern-central localities on May 18, with the highest temperature ranging from 37 to 40 degrees Celsius."));
-        listeningList.add(new Listening("Education", R.drawable.hoctap, "According to the National Centre for Hydro- Metreologogical Forecasting (NCHMF), hot weather is set to scorch northern and northern-central localities on May 18, with the highest temperature ranging from 37 to 40 degrees Celsius."));
-        return listeningList;
+        for (int i = 0; i < cursor.getCount(); i++){
+            cursor.moveToPosition(i);
+            int id = cursor.getInt(0);
+            String topic = cursor.getString(1);
+            String image = cursor.getString(2);
+            String sentence = cursor.getString(3);
+            listeningList.add(new Listening(id,topic,image,sentence));
+        }
     }
+
+
 }
 

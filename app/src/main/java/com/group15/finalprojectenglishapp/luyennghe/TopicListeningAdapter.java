@@ -13,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.group15.finalprojectenglishapp.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -37,7 +38,12 @@ public class TopicListeningAdapter extends RecyclerView.Adapter<TopicListeningAd
             return;
         }
         holder.name.setText(listening.getTopic());
-        holder.image.setImageResource(listening.getImage());
+        Picasso.get()
+                .load(listening.getImage())
+                .placeholder(R.mipmap.ic_launcher)
+                .fit()
+                .centerCrop()
+                .into(holder.image);
 
         holder.topicLayout.setOnClickListener(new View.OnClickListener() {
             @Override

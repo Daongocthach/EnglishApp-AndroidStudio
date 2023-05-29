@@ -2,6 +2,8 @@ package com.group15.finalprojectenglishapp.luyennoi;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
@@ -14,21 +16,25 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.group15.finalprojectenglishapp.R;
+import com.group15.finalprojectenglishapp.database.Database;
+import com.group15.finalprojectenglishapp.hoctuvung.TuVung;
 import java.util.ArrayList;
 import java.util.Locale;
+import com.squareup.picasso.Picasso;
 
 public class SpeakingActivity extends AppCompatActivity {
     private ArrayList<Speaking> speakingList = new ArrayList<>();
-
+    final  String DATABASE_NAME = "HocNgonNgu.db";
+    SQLiteDatabase database;
     private String string;
     private TextToSpeech tts;
     private Boolean isRepeating = false;
     private Integer i = 0;
     private String speaker;
     private TextView paragraph;
-    private ArrayList<String> arrayList;
+    private ArrayList<String> arrayList = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,8 +48,7 @@ public class SpeakingActivity extends AppCompatActivity {
         TextView topic = findViewById(R.id.tv_topic);
         LinearLayout linearLayout = findViewById(R.id.linear2);
         RecyclerView recyclerViewTopic = findViewById(R.id.topic_recycleview);
-        speakingList = getTopicList();
-
+        AddArrayTV();
         TopicSpeakingAdapter topicSpeakingAdapter = new TopicSpeakingAdapter(speakingList, new IClickItemSpeaking() {
             @Override
             public void onClickItemTopicSpeaking(Speaking speaking) {
@@ -53,7 +58,12 @@ public class SpeakingActivity extends AppCompatActivity {
                 paragraph.setVisibility(View.VISIBLE);
                 imageView.setVisibility(View.VISIBLE);
                 linearLayout.setVisibility(View.VISIBLE);
-                imageView.setImageResource(speaking.getImage());
+                Picasso.get()
+                        .load(speaking.getImage())
+                        .placeholder(R.mipmap.ic_launcher)
+                        .fit()
+                        .centerCrop()
+                        .into(imageView);
                 title.setText(speaking.getTopic());
                 string = speaking.getSentence();
                 arrayList = splitIntoParagraphs(string, 10);
@@ -81,18 +91,26 @@ public class SpeakingActivity extends AppCompatActivity {
         btn_continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                float similarity = calculateStringSimilarity(speaker, paragraph.getText().toString());
-                if (similarity > 0.5) {
-                    showAlertDialog("Correct Answer");
+                if(speaker == null){
                     if(i < arrayList.size()) {
                         paragraph.setText(arrayList.get(i));
                         i = i + 1;
                     }
-                } else {
-                    showAlertDialog("Wrong Answer");
-                    if(i < arrayList.size()) {
-                        paragraph.setText(arrayList.get(i));
-                        i = i + 1;
+                }
+                else {
+                    float similarity = calculateStringSimilarity(speaker, paragraph.getText().toString());
+                    if (similarity > 0.5) {
+                        showAlertDialog("Correct Answer");
+                        if(i < arrayList.size()) {
+                            paragraph.setText(arrayList.get(i));
+                            i = i + 1;
+                        }
+                    } else {
+                        showAlertDialog("Wrong Answer");
+                        if(i < arrayList.size()) {
+                            paragraph.setText(arrayList.get(i));
+                            i = i + 1;
+                        }
                     }
                 }
             }
@@ -118,7 +136,7 @@ public class SpeakingActivity extends AppCompatActivity {
         });
     }
     private void showAlertDialog(String message) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(SpeakingActivity.this);
         builder.setMessage(message)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
@@ -150,14 +168,11 @@ public class SpeakingActivity extends AppCompatActivity {
         int totalParagraphs = (int) Math.ceil((double) totalWords / wordsPerParagraph);
         for (int i = 0; i < totalParagraphs; i++) {
             StringBuilder paragraph = new StringBuilder();
-
             int startIndex = i * wordsPerParagraph;
             int endIndex = Math.min(startIndex + wordsPerParagraph, totalWords);
-
             for (int j = startIndex; j < endIndex; j++) {
                 paragraph.append(words[j]).append(" ");
             }
-
             paragraphs.add(paragraph.toString().trim());
         }
         return paragraphs;
@@ -201,23 +216,19 @@ public class SpeakingActivity extends AppCompatActivity {
         }
     }
 
-    public ArrayList<Speaking> getTopicList() {
-        speakingList.add(new Speaking("Inflationary", R.drawable.lamphat, "The demand-pull and cost-push inflation will put pressure on the country's efforts to control inflation amid surging demand and strengthening of the US dollar which yields increased import prices.\n" +
-                "It will not be easy to keep inflation at 4.5% this year as targeted, economic expert Nguyen Bich Lam, former General Director of the General Statistics Office (GSO), has said.\n" +
-                "\n" +
-                "Inflationary pressure for Vietnam's economy in 2023 is \"huge\" and comes from many factors, he said in an interview with the Vietnam News Agency (VNA).\n" +
-                "\n" +
-                "The demand-pull and cost-push inflation will put pressure on the country's efforts to control inflation amid surging demand and strengthening of the US dollar which yields increased import prices.\n" +
-                "\n" +
-                "Demand for petrol and electricity – the two important commodities for production and consumption – will increase in 2023. The domestic electricity price has been kept unchanged for the past few years, while the price of coal and gas used in the production of electricity has increased, he said, noting that thermal and gas power account for a large proportion of the total generated electricity. Therefore, it is forecasted that the Government may raise the price of electricity this year"));
-        speakingList.add(new Speaking("War", R.drawable.chientranh, "US President Joe Biden will meet his Ukrainian counterpart at the G7 summit in Japan, a top advisor said Saturday. President Volodymyr Zelensky will join the global leaders after taking part in the Arab League summit in Saudi Arabia."));
-        speakingList.add(new Speaking("Food", R.drawable.luongthuc, "Canning your own tomatoes at home will bring garden-fresh flavor to all kinds of dishes year-round. Learn how to safely preserve them with our simple guide."));
-        speakingList.add(new Speaking("Weather", R.drawable.khihau, "According to the National Centre for Hydro- Metreologogical Forecasting (NCHMF), hot weather is set to scorch northern and northern-central localities on May 18, with the highest temperature ranging from 37 to 40 degrees Celsius."));
-        speakingList.add(new Speaking("Technology", R.drawable.congnghe, "According to the National Centre for Hydro- Metreologogical Forecasting (NCHMF), hot weather is set to scorch northern and northern-central localities on May 18, with the highest temperature ranging from 37 to 40 degrees Celsius."));
-        speakingList.add(new Speaking("Security", R.drawable.anninh, "According to the National Centre for Hydro- Metreologogical Forecasting (NCHMF), hot weather is set to scorch northern and northern-central localities on May 18, with the highest temperature ranging from 37 to 40 degrees Celsius."));
-        speakingList.add(new Speaking("Economy", R.drawable.kinhte, "According to the National Centre for Hydro- Metreologogical Forecasting (NCHMF), hot weather is set to scorch northern and northern-central localities on May 18, with the highest temperature ranging from 37 to 40 degrees Celsius."));
-        speakingList.add(new Speaking("Education", R.drawable.hoctap, "Hello, How are you?"));
-        return speakingList;
+    private void AddArrayTV(){
+        database = Database.initDatabase(SpeakingActivity.this, DATABASE_NAME);
+        Cursor cursor = database.rawQuery("SELECT * FROM LuyenNoi",null);
+        speakingList.clear();
+
+        for (int i = 0; i < cursor.getCount(); i++){
+            cursor.moveToPosition(i);
+            int id = cursor.getInt(0);
+            String topic = cursor.getString(1);
+            String image = cursor.getString(2);
+            String sentence = cursor.getString(3);
+            speakingList.add(new Speaking(id,topic,image,sentence));
+        }
     }
 
 }

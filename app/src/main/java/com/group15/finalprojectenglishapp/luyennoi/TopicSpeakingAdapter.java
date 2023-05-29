@@ -13,6 +13,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.group15.finalprojectenglishapp.R;
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class TopicSpeakingAdapter extends RecyclerView.Adapter<TopicSpeakingAdapter.TopicViewHolder> {
@@ -34,7 +36,12 @@ public class TopicSpeakingAdapter extends RecyclerView.Adapter<TopicSpeakingAdap
     public void onBindViewHolder(@NonNull TopicViewHolder holder, @SuppressLint("RecyclerView") int position) {
         Speaking speaking = speakingList.get(position);
         holder.name.setText(speaking.getTopic());
-        holder.image.setImageResource(speaking.getImage());
+        Picasso.get()
+                .load(speaking.getImage())
+                .placeholder(R.mipmap.ic_launcher)
+                .fit()
+                .centerCrop()
+                .into(holder.image);
 
         holder.topicLayout.setOnClickListener(new View.OnClickListener() {
             @Override
