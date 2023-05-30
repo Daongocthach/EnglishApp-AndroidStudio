@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.group15.finalprojectenglishapp.R;
 
 import java.util.ArrayList;
 
+import com.group15.finalprojectenglishapp.admin.bohoctap.AddBoHocTapActivity;
 import com.group15.finalprojectenglishapp.database.Database;
 import com.group15.finalprojectenglishapp.dienkhuyet.CauDienKhuyet;
 
@@ -77,9 +79,11 @@ public class AdminDienKhuyetAdapter extends BaseAdapter {
                         Boolean result = deleteDienKhuyet(dk.getIdcau());
                         list.clear();
                         if (result == true) {
+                            showAlertDialog("Xóa thành công");
                             Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
                         }
                         else {
+                            showAlertDialog("Xóa thất bại");
                             Toast.makeText(context, "Xóa thất bại", Toast.LENGTH_SHORT).show();
                         }
                         list = getDienKhuyet(dk.getIdbo());
@@ -124,5 +128,26 @@ public class AdminDienKhuyetAdapter extends BaseAdapter {
             listDK.add(new CauDienKhuyet(idcau, idbo, noidung, dapan, goiy));
         }
         return listDK;
+    }
+    private void showAlertDialog(String message) {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+        builder.setMessage(message);
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
+        new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                // Không cần thực hiện hành động trong onTick()
+            }
+
+            @Override
+            public void onFinish() {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
+        }.start();
     }
 }

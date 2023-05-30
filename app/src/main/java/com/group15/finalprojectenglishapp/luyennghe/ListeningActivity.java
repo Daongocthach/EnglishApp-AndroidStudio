@@ -160,7 +160,7 @@ public class ListeningActivity extends AppCompatActivity {
     }
     private void AddArrayListening(){
         database = Database.initDatabase(ListeningActivity.this, DATABASE_NAME);
-        Cursor cursor = database.rawQuery("SELECT * FROM LuyenNoi",null);
+        Cursor cursor = database.rawQuery("SELECT * FROM Listening",null);
         listeningList.clear();
 
         for (int i = 0; i < cursor.getCount(); i++){

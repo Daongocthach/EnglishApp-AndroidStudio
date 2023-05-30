@@ -81,7 +81,7 @@ public class SignupActivity extends AppCompatActivity {
                                         {
                                             if (task.isSuccessful()) {
                                                 DB.open();
-                                                Boolean insert = DB.insertData(mAuth.getCurrentUser().getUid(),hoten,email,sdt,0, 0);
+                                                Boolean insert = DB.insertData(mAuth.getCurrentUser().getUid(),hoten,email,sdt,0, 1);
                                                 DB.close();
                                                 btnSignUp.setText(insert.toString());
                                                 Toast.makeText(SignupActivity.this, "Đăng ký thành công", Toast.LENGTH_SHORT).show();

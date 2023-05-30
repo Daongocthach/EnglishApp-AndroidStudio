@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.group15.finalprojectenglishapp.R;
+import com.group15.finalprojectenglishapp.admin.dienkhuyet.EditDienKhuyetActivity;
 import com.group15.finalprojectenglishapp.database.Database;
 import com.group15.finalprojectenglishapp.tracnghiem.CauTracNghiem;
 
@@ -75,9 +77,11 @@ public class AdminTracNghiemAdapter extends BaseAdapter {
                         Boolean result = deleteTracNghiem(tn.getIdcau());
                         list.clear();
                         if (result == true) {
+                            showAlertDialog("Xóa thành công");
                             Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
                         }
                         else {
+                            showAlertDialog("Xóa thất bại");
                             Toast.makeText(context, "Xóa thất bại", Toast.LENGTH_SHORT).show();
                         }
                         list = getTracNghiem(tn.getIdbo());
@@ -124,5 +128,26 @@ public class AdminTracNghiemAdapter extends BaseAdapter {
             listTN.add(new CauTracNghiem(idcau, idbo, noidung, dapanA, dapanB, dapanC, dapanD, dapanTrue));
         }
         return listTN;
+    }
+    private void showAlertDialog(String message) {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+        builder.setMessage(message);
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
+        new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                // Không cần thực hiện hành động trong onTick()
+            }
+
+            @Override
+            public void onFinish() {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
+        }.start();
     }
 }

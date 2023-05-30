@@ -169,7 +169,6 @@ public class HomeFragment extends Fragment {
         } else return;
         dialog.show();
     }
-    
 
     private void setUpRecyclerView() {
         recyclerView.setHasFixedSize(true);
