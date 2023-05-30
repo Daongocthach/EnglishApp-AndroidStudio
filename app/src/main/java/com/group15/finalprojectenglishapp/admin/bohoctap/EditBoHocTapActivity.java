@@ -1,10 +1,12 @@
 package com.group15.finalprojectenglishapp.admin.bohoctap;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -47,15 +49,18 @@ public class EditBoHocTapActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String ten = edtBoHocTap.getText().toString();
                 if (ten == "") {
-                    Toast.makeText(EditBoHocTapActivity.this, "Chưa điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
+                    showAlertDialog("Cập nhật thất bại");
+                    Toast.makeText(EditBoHocTapActivity.this, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Boolean result = updateBoHocTap(boHocTap.getIdBo(), boHocTap.getStt(), ten);
                     if (result == true) {
+                        showAlertDialog("Cập nhật thành công");
                         Toast.makeText(EditBoHocTapActivity.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(EditBoHocTapActivity.this, AdminBoHocTapActivity.class));
                     }
                     else {
+                        showAlertDialog("Cập nhật thất bại");
                         Toast.makeText(EditBoHocTapActivity.this, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -96,5 +101,26 @@ public class EditBoHocTapActivity extends AppCompatActivity {
         else {
             return false;
         }
+    }
+    private void showAlertDialog(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(EditBoHocTapActivity.this);
+        builder.setMessage(message);
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
+        new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                // Không cần thực hiện hành động trong onTick()
+            }
+
+            @Override
+            public void onFinish() {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
+        }.start();
     }
 }

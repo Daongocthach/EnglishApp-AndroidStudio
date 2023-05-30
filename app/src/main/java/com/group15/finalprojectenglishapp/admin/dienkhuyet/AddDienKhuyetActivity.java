@@ -1,9 +1,11 @@
 package com.group15.finalprojectenglishapp.admin.dienkhuyet;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -15,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Arrays;
 import com.group15.finalprojectenglishapp.R;
+import com.group15.finalprojectenglishapp.admin.bohoctap.AddBoHocTapActivity;
 import com.group15.finalprojectenglishapp.database.Database;
 
 public class AddDienKhuyetActivity extends AppCompatActivity {
@@ -48,6 +51,7 @@ public class AddDienKhuyetActivity extends AppCompatActivity {
                 String dapan = edtDapAn.getText().toString();
                 String goiy = edtGoiY.getText().toString();
                 if (noidung == "" || dapan == "" || goiy == ""){
+                    showAlertDialog("Chưa điền đầy đủ thông tin");
                     Toast.makeText(AddDienKhuyetActivity.this, "Chưa điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -55,16 +59,19 @@ public class AddDienKhuyetActivity extends AppCompatActivity {
                     if (check == true) {
                         Boolean result = addDienKhuyet(idBDK, noidung, dapan, goiy);
                         if (result == true) {
+                            showAlertDialog("Thêm thành công");
                             Toast.makeText(AddDienKhuyetActivity.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(AddDienKhuyetActivity.this, AdminDienKhuyetActivity.class);
                             intent.putExtra("idBoDienKhuyet", idBDK);
                             startActivity(intent);
                         }
                         else {
+                            showAlertDialog("Thêm thất bại");
                             Toast.makeText(AddDienKhuyetActivity.this, "Thêm thất bại", Toast.LENGTH_SHORT).show();
                         }
                     }
                     else {
+                        showAlertDialog("Vui lòng nhập đúng đáp án");
                         Toast.makeText(AddDienKhuyetActivity.this, "Vui lòng nhập đúng đáp án", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -98,5 +105,26 @@ public class AddDienKhuyetActivity extends AppCompatActivity {
         else {
             return false;
         }
+    }
+    private void showAlertDialog(String message) {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(AddDienKhuyetActivity.this);
+        builder.setMessage(message);
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
+        new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                // Không cần thực hiện hành động trong onTick()
+            }
+
+            @Override
+            public void onFinish() {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
+        }.start();
     }
 }

@@ -55,11 +55,11 @@ public class AdminActivity extends AppCompatActivity {
         LayUser();
         adminList = new ArrayList<>();
         adminList.add("Thông tin tài khoản");
-        adminList.add("Học tập");
+        adminList.add("");
         adminList.add("Bộ học tập");
-        adminList.add("Từ vựng");
+        adminList.add("");
         adminList.add("Trắc nghiệm");
-        adminList.add("Sắp xếp câu");
+        adminList.add("");
         adminList.add("Luyện nghe");
         adminList.add("Điền khuyết");
         adapter = new AdminAdapter(AdminActivity.this, R.layout.row_admin, adminList);

@@ -218,7 +218,7 @@ public class SpeakingActivity extends AppCompatActivity {
 
     private void AddArraySpeaking(){
         database = Database.initDatabase(SpeakingActivity.this, DATABASE_NAME);
-        Cursor cursor = database.rawQuery("SELECT * FROM LuyenNoi",null);
+        Cursor cursor = database.rawQuery("SELECT * FROM Speaking",null);
         speakingList.clear();
 
         for (int i = 0; i < cursor.getCount(); i++){

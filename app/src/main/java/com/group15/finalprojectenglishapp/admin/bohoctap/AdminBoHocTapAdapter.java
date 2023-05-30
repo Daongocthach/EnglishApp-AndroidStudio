@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,9 +77,11 @@ public class AdminBoHocTapAdapter extends BaseAdapter {
                         Boolean result = deleteBoHocTap(bht.getIdBo());
                         list.clear();
                         if (result == true) {
+                            showAlertDialog("Xóa thành công");
                             Toast.makeText(context, "Xóa thành công", Toast.LENGTH_SHORT).show();
                         }
                         else {
+                            showAlertDialog("Xóa thất bại");
                             Toast.makeText(context, "Xóa thất bại", Toast.LENGTH_SHORT).show();
                         }
                         list = getBoHocTap();
@@ -160,5 +163,26 @@ public class AdminBoHocTapAdapter extends BaseAdapter {
             listBHT.add(new BoHocTap(idbo, stt, tenbo));
         }
         return listBHT;
+    }
+    private void showAlertDialog(String message) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+        builder.setMessage(message);
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
+        new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                // Không cần thực hiện hành động trong onTick()
+            }
+
+            @Override
+            public void onFinish() {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
+        }.start();
     }
 }

@@ -1,9 +1,11 @@
 package com.group15.finalprojectenglishapp.admin.tracnghiem;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import com.group15.finalprojectenglishapp.R;
+import com.group15.finalprojectenglishapp.admin.dienkhuyet.EditDienKhuyetActivity;
 import com.group15.finalprojectenglishapp.database.Database;
 
 import java.util.ArrayList;
@@ -64,6 +67,7 @@ public class AddTracNghiemActivity extends AppCompatActivity {
                 String dapanDung = spnDapAnTrue.getSelectedItem().toString();
                 String dapanTrue = "";
                 if (noidung == "" || dapanA == "" || dapanB == "" || dapanC == "" || dapanD == ""){
+                    showAlertDialog("Chưa điền đầy đủ thông tin");
                     Toast.makeText(AddTracNghiemActivity.this, "Chưa điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -83,12 +87,14 @@ public class AddTracNghiemActivity extends AppCompatActivity {
                     }
                     Boolean result = addTracNghiem(idBTN, noidung, dapanA, dapanB, dapanC, dapanD, dapanTrue);
                     if (result == true) {
+                        showAlertDialog("Thêm thành công");
                         Toast.makeText(AddTracNghiemActivity.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(AddTracNghiemActivity.this, AdminTracNghiemActivity.class);
                         intent.putExtra("idBoTracNghiem", idBTN);
                         startActivity(intent);
                     }
                     else {
+                        showAlertDialog("Thêm thất bại");
                         Toast.makeText(AddTracNghiemActivity.this, "Thêm thất bại", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -114,5 +120,25 @@ public class AddTracNghiemActivity extends AppCompatActivity {
             return true;
         }
     }
+    private void showAlertDialog(String message) {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(AddTracNghiemActivity.this);
+        builder.setMessage(message);
 
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
+        new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                // Không cần thực hiện hành động trong onTick()
+            }
+
+            @Override
+            public void onFinish() {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
+        }.start();
+    }
 }

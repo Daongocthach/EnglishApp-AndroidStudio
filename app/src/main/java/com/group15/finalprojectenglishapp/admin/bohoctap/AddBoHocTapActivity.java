@@ -1,10 +1,13 @@
 package com.group15.finalprojectenglishapp.admin.bohoctap;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,6 +20,7 @@ import java.util.ArrayList;
 
 import com.group15.finalprojectenglishapp.bohoctap.BoHocTap;
 import com.group15.finalprojectenglishapp.database.Database;
+import com.group15.finalprojectenglishapp.luyennoi.SpeakingActivity;
 
 public class AddBoHocTapActivity extends AppCompatActivity {
     ImageView imgBack, imgAdd;
@@ -44,15 +48,18 @@ public class AddBoHocTapActivity extends AppCompatActivity {
                 String ten = edtBoHocTap.getText().toString();
                 if (ten == "") {
                     Toast.makeText(AddBoHocTapActivity.this, "Thêm thất bại", Toast.LENGTH_SHORT).show();
+                    showAlertDialog("Thêm thất bại");
                 }
                 else {
                     int max = getMaxSTTBoHocTap();
                     Boolean result = addBoHocTap(max + 1, ten);
                     if (result == true) {
-                        Toast.makeText(AddBoHocTapActivity.this, "Thêm thành công", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddBoHocTapActivity.this, "Thêm thành công", Toast.LENGTH_LONG).show();
+                        showAlertDialog("Thêm thành công");
                         startActivity(new Intent(AddBoHocTapActivity.this, AdminBoHocTapActivity.class));
                     }
                     else {
+                        showAlertDialog("Thêm thất bại");
                         Toast.makeText(AddBoHocTapActivity.this, "Thêm thất bại", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -89,5 +96,27 @@ public class AddBoHocTapActivity extends AppCompatActivity {
         else {
             return true;
         }
+
+    }
+    private void showAlertDialog(String message) {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(AddBoHocTapActivity.this);
+        builder.setMessage(message);
+
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
+        new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                // Không cần thực hiện hành động trong onTick()
+            }
+
+            @Override
+            public void onFinish() {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
+        }.start();
     }
 }

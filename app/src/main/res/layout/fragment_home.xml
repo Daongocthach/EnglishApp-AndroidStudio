@@ -23,13 +23,7 @@
             android:textSize="30dp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/toolbar_setting"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_gravity="end"
-            android:layout_marginEnd="10dp"
-            android:src="@drawable/bell" />
+
     </androidx.appcompat.widget.Toolbar>
 
     <View
@@ -144,7 +138,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Toeic Listen"
+                    android:text="Listening"
                     android:textAlignment="center"
                     android:textColor="@color/black"
                     android:textSize="12dp"
@@ -185,40 +179,7 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="80dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="10dp"
-                android:orientation="vertical">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardViewHocTuVung"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:backgroundTint="@color/pink"
-                    app:cardCornerRadius="10dp">
-
-                    <ImageView
-                        android:id="@+id/ivHTV"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/vocabulry" />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Vocabulary"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="70dp"
@@ -254,74 +215,9 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="80dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="10dp"
-                android:orientation="vertical">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/btn_dictionary"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:backgroundTint="@color/highlight_orange"
-                    app:cardCornerRadius="10dp">
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/dictionary" />
-                </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Directory"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="80dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="10dp"
-                android:orientation="vertical">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardViewSapXepCau"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:backgroundTint="@color/gray"
-                    app:cardCornerRadius="10dp">
-
-                    <ImageView
-                        android:id="@+id/ivSXC"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/ic_order" />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Arrange"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="70dp"
@@ -358,73 +254,9 @@
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="80dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="10dp"
-                android:orientation="vertical">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardViewXepHang"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:backgroundTint="@color/highlight_yellow"
-                    app:cardCornerRadius="10dp">
 
-                    <ImageView
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_gravity="center"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/rankcustomer" />
-                </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Ranking"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="70dp"
-                android:layout_height="80dp"
-                android:layout_columnWeight="1"
-                android:layout_margin="10dp"
-                android:orientation="vertical">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardViewListening"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_gravity="center"
-                    android:backgroundTint="@color/red"
-                    app:cardCornerRadius="10dp">
-
-                    <ImageView
-                        android:layout_width="36dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/youtube" />
-                </androidx.cardview.widget.CardView>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Listening"
-                    android:textAlignment="center"
-                    android:textColor="@color/black"
-                    android:textSize="12dp"
-                    android:textStyle="bold" />
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="70dp"

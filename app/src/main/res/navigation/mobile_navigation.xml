@@ -9,14 +9,13 @@
         android:id="@+id/nav_home"
         android:name="com.group15.finalprojectenglishapp.ui.home.HomeFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home"/>
     <activity
         android:id="@+id/nav_admin"
         android:label="Quản Lý"
         android:name="com.group15.finalprojectenglishapp.admin.AdminActivity"
         tools:layout="@layout/activity_admin"
         />
-
     <activity
         android:id="@+id/HocTuVung"
         android:label="Học từ vựng"
@@ -29,7 +28,6 @@
         android:name="com.group15.finalprojectenglishapp.hoctuvung.DSTuVungActivity"
         tools:layout="@layout/activity_ds_tuvung"
         />
-
     <activity
         android:id="@+id/SapXepCau"
         android:label="Word Matters"
@@ -66,7 +64,6 @@
         android:name="com.group15.finalprojectenglishapp.taikhoan.RankingActivity"
         tools:layout="@layout/activity_ranking"
         ></activity>
-
     <fragment
         android:id="@+id/logout"
         android:name="com.group15.finalprojectenglishapp.ui.home.LogoutFragment"

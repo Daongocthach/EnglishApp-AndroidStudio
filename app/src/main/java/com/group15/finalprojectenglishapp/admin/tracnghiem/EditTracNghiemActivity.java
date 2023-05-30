@@ -1,10 +1,12 @@
 package com.group15.finalprojectenglishapp.admin.tracnghiem;
 
+import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -16,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.group15.finalprojectenglishapp.R;
+import com.group15.finalprojectenglishapp.admin.dienkhuyet.EditDienKhuyetActivity;
 import com.group15.finalprojectenglishapp.database.Database;
 import com.group15.finalprojectenglishapp.tracnghiem.CauTracNghiem;
 
@@ -89,6 +92,7 @@ public class EditTracNghiemActivity extends AppCompatActivity {
                 String dapanDung = spnDapAnTrue.getSelectedItem().toString();
                 String dapanTrue = "";
                 if (noidung == "" || dapanA == "" || dapanB == "" || dapanC == "" || dapanD == ""){
+                    showAlertDialog("Chưa điền đầy đủ thông tin");
                     Toast.makeText(EditTracNghiemActivity.this, "Chưa điền đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -108,12 +112,14 @@ public class EditTracNghiemActivity extends AppCompatActivity {
                     }
                     Boolean result = updateTracNghiem(tracNghiem.getIdcau(), tracNghiem.getIdbo(), noidung, dapanA, dapanB, dapanC, dapanD, dapanTrue);
                     if (result == true) {
+                        showAlertDialog("Cập nhật thành công");
                         Toast.makeText(EditTracNghiemActivity.this, "Cập nhật thành công", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(EditTracNghiemActivity.this, AdminTracNghiemActivity.class);
                         intent.putExtra("idBoTracNghiem", tracNghiem.getIdbo());
                         startActivity(intent);
                     }
                     else {
+                        showAlertDialog("Cập nhật thất bại");
                         Toast.makeText(EditTracNghiemActivity.this, "Cập nhật thất bại", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -165,5 +171,25 @@ public class EditTracNghiemActivity extends AppCompatActivity {
             return true;
         }
     }
+    private void showAlertDialog(String message) {
+        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(EditTracNghiemActivity.this);
+        builder.setMessage(message);
 
+        final AlertDialog dialog = builder.create();
+        dialog.show();
+
+        new CountDownTimer(1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                // Không cần thực hiện hành động trong onTick()
+            }
+
+            @Override
+            public void onFinish() {
+                if (dialog != null && dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            }
+        }.start();
+    }
 }

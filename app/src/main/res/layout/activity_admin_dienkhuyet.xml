@@ -74,7 +74,7 @@
         android:id="@+id/imgBackAdminDK"
         android:layout_width="60dp"
         android:layout_height="60dp"
-
+        android:visibility="gone"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="80dp"
         android:src="@drawable/ic_back"

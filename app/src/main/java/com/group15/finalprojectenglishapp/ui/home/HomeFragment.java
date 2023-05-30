@@ -52,14 +52,10 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-        cardViewHocTuVung = root.findViewById(R.id.cardViewHocTuVung);
         cardViewDienKhuyet= root.findViewById(R.id.cardViewDienKhuyet);
         cardViewTracNghiem= root.findViewById(R.id.cardViewTracNghiem);
-        cardViewSapXepCau = root.findViewById(R.id.cardViewSapXepCau);
         cardViewLuyenNghe = root.findViewById(R.id.cardViewLuyenNghe);
         cardViewLuyenNoi = root.findViewById(R.id.cardViewLuyenNoi);
-        cardViewXepHang = root.findViewById(R.id.cardViewXepHang);
-        cardViewListening = root.findViewById(R.id.cardViewListening);
         recyclerView = root.findViewById(R.id.recycleView_word);
         SearchView searchView = root.findViewById(R.id.search_bar);
         DStuvung = new ArrayList<>();
@@ -83,13 +79,6 @@ public class HomeFragment extends Fragment {
                 return false;
             }
         });
-        cardViewHocTuVung.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), HocTuVungActivity.class);
-                startActivity(intent);
-            }
-        });
         cardViewDienKhuyet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,32 +93,9 @@ public class HomeFragment extends Fragment {
                 startActivity(intent);
             }
         });
-        cardViewSapXepCau.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), SapXepCauActivity.class);
-                startActivity(intent);
-            }
-        });
         cardViewLuyenNghe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), LuyenNgheActivity.class);
-                startActivity(intent);
-            }
-        });
-        cardViewXepHang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent=new Intent(getActivity(), RankingActivity.class);
-                startActivity(intent);
-            }
-        });
-        cardViewListening.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
                 Intent intent=new Intent(getActivity(), ListeningActivity.class);
                 startActivity(intent);
             }
@@ -169,7 +135,6 @@ public class HomeFragment extends Fragment {
         } else return;
         dialog.show();
     }
-    
 
     private void setUpRecyclerView() {
         recyclerView.setHasFixedSize(true);
