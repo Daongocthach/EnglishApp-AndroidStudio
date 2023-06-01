@@ -55,11 +55,11 @@ public class AdminActivity extends AppCompatActivity {
         LayUser();
         adminList = new ArrayList<>();
         adminList.add("Thông tin tài khoản");
-        adminList.add("Học Tập");
+        adminList.add("Học tập");
         adminList.add("Bộ học tập");
-        adminList.add("Từ Vựng");
+        adminList.add("Từ vựng");
         adminList.add("Trắc nghiệm");
-        adminList.add("Sắp Xếp Câu");
+        adminList.add("Sắp xếp câu");
         adminList.add("Luyện nghe");
         adminList.add("Điền khuyết");
         adapter = new AdminAdapter(AdminActivity.this, R.layout.row_admin, adminList);
@@ -71,8 +71,8 @@ public class AdminActivity extends AppCompatActivity {
                     startActivity(new Intent(AdminActivity.this, ThongTinTaikhoanActivity.class));
                 }
                 else if (position == 1) {
-                    Intent intent = new Intent(AdminActivity.this, MainActivity.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(AdminActivity.this, MainActivity.class);
+//                    startActivity(intent);
                 }
                 else if (position == 2) {
                     startActivity(new Intent(AdminActivity.this, AdminBoHocTapActivity.class));

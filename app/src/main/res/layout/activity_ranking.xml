@@ -10,7 +10,7 @@
         android:id="@+id/imgVBackRank"
         android:layout_width="61dp"
         android:layout_height="55dp"
-
+        android:visibility="gone"
         android:layout_marginTop="20dp"
         android:src="@drawable/ic_back"
         android:tint="@color/black"

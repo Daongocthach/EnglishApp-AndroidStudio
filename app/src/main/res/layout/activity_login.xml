@@ -127,6 +127,7 @@
         android:alpha="1"
         android:layout_marginRight="30dp"
         android:text="Bạn quên mật khẩu?"
+        android:visibility="gone"
         android:textColor="@color/textDescription"
         android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
